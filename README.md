@@ -7,7 +7,7 @@ Stack:
 
 Fitur:
 - Landing page modern untuk wisata glamping tepi sungai.
-- Popup awal saat website dibuka (multi gambar, bisa dikelola admin).
+- Popup awal saat website dibuka (single gambar, bisa dikelola admin).
 - Admin login.
 - Admin dapat mengubah seluruh konten utama: hero, fasilitas, destinasi, testimoni, popup.
 
@@ -67,6 +67,18 @@ docker compose down
 
 ## Deploy
 
-- App: Vercel
-- Database: Neon atau Supabase Postgres
-- Set env variable di Vercel: `DATABASE_URL`, `ADMIN_USERNAME`, `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`
+### Vercel Free (Tanpa Docker Lokal)
+
+1. Buat database Postgres gratis di Neon/Supabase.
+2. Ambil connection string Postgres lalu simpan sebagai `DATABASE_URL`.
+3. Import repo ini di Vercel (`Add New Project` -> `Import Git Repository`).
+4. Di Environment Variables Vercel, isi:
+   - `DATABASE_URL`
+   - `ADMIN_USERNAME`
+   - `ADMIN_PASSWORD`
+   - `ADMIN_SESSION_SECRET`
+5. Deploy.
+
+Catatan:
+- Build Vercel sudah otomatis menjalankan `prisma db push`, jadi schema DB terset saat deploy.
+- Kamu tidak perlu menjalankan Docker di lokal agar aplikasi bisa online.
