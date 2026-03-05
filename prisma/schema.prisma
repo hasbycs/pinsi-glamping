@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model LandingContent {
+  id            Int      @id @default(1)
+  siteName      String
+  heroTagline   String
+  heroTitle     String
+  heroSubtitle  String
+  heroImageUrl  String
+  ctaPrimary    String
+  ctaSecondary  String
+  aboutTitle    String
+  aboutBody     String
+  contactPhone  String
+  contactEmail  String
+  updatedAt     DateTime @updatedAt
+}
+
+model PopupImage {
+  id          Int      @id @default(autoincrement())
+  title       String
+  imageUrl    String
+  buttonLabel String   @default("Lihat Promo")
+  buttonUrl   String   @default("#")
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Facility {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  icon        String   @default("Tent")
+  isPublished Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Attraction {
+  id          Int      @id @default(autoincrement())
+  title       String
+  location    String
+  description String
+  imageUrl    String
+  priceFrom   Int?
+  isPublished Boolean  @default(false)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Testimonial {
+  id          Int      @id @default(autoincrement())
+  guestName   String
+  guestOrigin String
+  quote       String
+  rating      Int      @default(5)
+  isPublished Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
